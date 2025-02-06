@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "ESNext",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "typeRoots": ["@types", "./node_modules/@types"],
+        "paths": {
+            "@api/*": ["src/api/*"],
+            "@worker/*": ["src/worker/*"],
+            "@consumer/*": ["src/consumer/*"],
+            "@common/*": ["src/common/*"],
+            "@config/*": ["src/config/*"],
+            "*": ["node_modules/*"]
+        },
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": ["src/**/*", "@types/express/index.d.ts"]
+}
