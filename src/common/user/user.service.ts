@@ -28,8 +28,7 @@ export class UserService {
         user.name = name;
         user.email = email;
         user.password = hashedPass;
-        user.isAdmin = false;
-
+        user.isAdmin = false;        
         await this.userRepository.save(user);
         return user;
     }

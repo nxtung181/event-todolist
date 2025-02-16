@@ -12,7 +12,7 @@ export const MySQLDataSource = new DataSource({
     database: MYSQL_NAME,
     synchronize: true, //Tạo bảng tự động từ entity nếu không có
     logging: false,
-    entities: [__dirname + '/../user/User.ts'], // Đường dẫn đến các entity liên quan đến MySQL
+    entities: [__dirname + '/../user/User.ts', __dirname + '/../role/Role.ts'], // Đường dẫn đến các entity liên quan đến MySQL
 });
 
 export class MySQLAdapter {

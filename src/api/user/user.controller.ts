@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 export class UserController {
     static async signUp(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { name, email, password } = req.body;
+            const { name, email, password, role} = req.body;
             const user = await UserService.signUp(name, email, password);
             res.sendJson({ data: user });
         } catch (error) {

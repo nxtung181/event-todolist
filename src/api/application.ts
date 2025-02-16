@@ -20,7 +20,7 @@ export class Application {
         await MySQLAdapter.connect();
         await DatabaseAdapter.connect();
         await RedisAdapter.connect();
-        // await PostgresAdapter.connect();
+        await PostgresAdapter.connect();
 
         Application.registerEvents();
         const expressServer = new ExpressServer();

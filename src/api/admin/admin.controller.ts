@@ -44,27 +44,4 @@ export class AdminController {
             next(error);
         }
     }
-    static async Test(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const stats = await AdminService.test();
-            res.sendJson("perfect");
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    static async Test1(req: Request, res: Response, next: NextFunction): Promise<void> {
-        // try {
-        //     const query = req.query;
-        //     const stats = await AdminService.test1(
-        //         parseInt(query.page.toString(), 10),
-        //         parseInt(query.pageSize.toString(), 10),
-        //         query.sort.toString()
-        //     );
-        //     res.sendJson({ data: stats });
-        //     res.sendJson({ data: stats });
-        // } catch (error) {
-        //     next(error);
-        // }
-    }
 }

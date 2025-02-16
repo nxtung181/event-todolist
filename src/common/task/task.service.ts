@@ -6,8 +6,6 @@ import TaskStatistic, { ITaskStatistic } from './TaskStatistic';
 import eventbus from '@common/eventbus';
 import { EVENT_CREATE_TASK, EVENT_DELETE_TASK, EVENT_EDIT_TASK } from './task.event';
 import { ITask, ITaskEdit, ITaskRes } from './task.interface';
-import TaskShare from './TaskShare';
-import _ from 'lodash';
 
 export class TaskService {
     static async createTask(title: string, content: string, status: string, userId: string): Promise<ITask> {
@@ -109,19 +107,7 @@ export class TaskService {
         return { tasks, page, pageSize, totalPage };
     }
 
-    static async shareTask(taskId: string, userIds: string[]): Promise<void> {
-        let taskShare = await TaskShare.findOne({ taskId });
-        if (!taskShare) {
-            taskShare = new TaskShare({ taskId, userIds });
-            await taskShare.save();
-        } else {
-            const sharedWithSet = new Set(taskShare.sharedWith);
-            const newSharedWith = _.filter(userIds, (userId) => !sharedWithSet.has(userId));
-            taskShare.sharedWith.push(...newSharedWith);
-            await taskShare.save();
-        }
-    }
-    static async getStatOfUser1(userId: string): Promise<ITaskStatistic> {
+    static async getStatOfUser(userId: string): Promise<ITaskStatistic> {
         const result = await TaskStatistic.findOne({ userId });
         return result;
     }

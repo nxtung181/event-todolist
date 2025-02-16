@@ -8,23 +8,22 @@ import { ErrorCode } from "@config/errors";
 export class Token {
     public static async generateAccessToken(payload: IUserRes): Promise<string>{
         if(payload){
-            const accessToken = jwt.sign({id: payload.id, name: payload.name, email: payload.email, isAdmin: payload.isAdmin},
+            const accessToken = jwt.sign({id: payload.id, isAdmin: payload.isAdmin},
                                         ACCESS_TOKEN,
-                                        {expiresIn: '1d'})
+                                        {expiresIn: '2h'})
             return accessToken
         }
     }
 
     public static async generateRefreshToken(payload: IUserRes): Promise<string>{
         if(payload){
-            const refreshToken = jwt.sign({id: payload.id, name: payload.name, email: payload.email, isAdmin: payload.isAdmin},
+            const refreshToken = jwt.sign({id: payload.id, isAdmin: payload.isAdmin},
                                         REFRESH_TOKEN,
                                         {expiresIn: '1d'})
             await RedisAdapter.set(payload.id.toString(), refreshToken, 24*60*60)
             return refreshToken
         }
     }
-
     public static async verifyRefreshToken(token: string): Promise<IUserRes>{
         const decoded = jwt.verify(token, REFRESH_TOKEN) as IUserRes
         const tokenInRedis = await RedisAdapter.get(decoded.id as string)

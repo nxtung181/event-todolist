@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-
 import { IUserRes } from "@common/user/user.interface";
 
 
